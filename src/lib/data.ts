@@ -1,7 +1,7 @@
 export const businessInfo = {
   name: "Sancheti Computers",
   owner: "Mahendra Kumar",
-  established: 2017,
+  established: 2012,
   address: {
     street: "112, Sadar Patrappa Road",
     area: "Dodpete, Nagarathpete",
@@ -9,9 +9,9 @@ export const businessInfo = {
     state: "Karnataka",
     pincode: "560002",
   },
-  phone: "+919876543210",
-  email: "info@sancheticomputers.com",
-  whatsapp: "919876543210",
+  phone: "+918050773494",
+  email: "sancheticomputers888@gmail.com",
+  whatsapp: "918050773494",
   hours: {
     days: "Monday – Saturday",
     time: "10:00 AM – 8:00 PM",

@@ -31,7 +31,7 @@ export default function ProductsPage() {
   const handleSubmitInquiry = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Hi, I'm interested in ${inquiryProduct}. ${formData.message}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/918050773494?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
     setShowInquiryForm(false);
     setFormData({ name: "", phone: "", email: "", message: "" });

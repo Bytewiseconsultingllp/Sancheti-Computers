@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Sancheti Computers",
   },
   description:
-    "Sancheti Computers is a trusted IT hardware, software, laptop, desktop, networking and accessories provider in Bengaluru since 2017. Competitive prices, genuine products and excellent service.",
+    "Sancheti Computers is a trusted IT hardware, software, laptop, desktop, networking and accessories provider in Bengaluru since 2012. Competitive prices, genuine products and excellent service.",
   keywords: [
     "Computer Shop in SP Road",
     "Computer Store Bangalore",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sancheti Computers | IT Hardware, Laptops & Networking Solutions",
     description:
-      "Trusted IT solutions provider in Bengaluru since 2017. Computers, laptops, networking, software & more at competitive prices.",
+      "Trusted IT solutions provider in Bengaluru since 2012. Computers, laptops, networking, software & more at competitive prices.",
     url: "https://sancheticomputers.com",
     siteName: "Sancheti Computers",
     locale: "en_IN",

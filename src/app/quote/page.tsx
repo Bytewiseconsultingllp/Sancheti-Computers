@@ -35,7 +35,7 @@ export default function QuotePage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `New Quote Request:\nName: ${formData.name}\nCompany: ${formData.company}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nCategory: ${formData.category}\nQuantity: ${formData.quantity}\nBudget: ${formData.budget}\nRequirements: ${formData.requirements}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/918050773494?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);

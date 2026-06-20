@@ -48,7 +48,7 @@ export default function Header() {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href="tel:+919876543210"
+              href="tel:+918050773494"
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary border border-secondary/30 rounded-lg hover:bg-secondary hover:text-white transition-all duration-200"
             >
               <Phone size={16} />
@@ -94,7 +94,7 @@ export default function Header() {
               ))}
               <div className="pt-3 space-y-2">
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+918050773494"
                   className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium text-secondary border border-secondary/30 rounded-lg hover:bg-secondary hover:text-white transition-all"
                 >
                   <Phone size={16} />

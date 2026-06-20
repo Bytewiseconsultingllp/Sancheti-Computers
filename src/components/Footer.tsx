@@ -24,7 +24,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold">Sancheti Computers</h3>
-                <p className="text-blue-200 text-sm">Trusted IT Solutions Since 2017</p>
+                <p className="text-blue-200 text-sm">Trusted IT Solutions Since 2012</p>
               </div>
             </div>
             <p className="text-blue-200 text-sm leading-relaxed mb-6">
@@ -74,14 +74,14 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-accent shrink-0" />
-                <a href="tel:+919876543210" className="text-blue-200 text-sm hover:text-white transition-colors">
-                  +91 98765 43210
+                <a href="tel:+918050773494" className="text-blue-200 text-sm hover:text-white transition-colors">
+                  +91 80507 73494
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-accent shrink-0" />
-                <a href="mailto:info@sancheticomputers.com" className="text-blue-200 text-sm hover:text-white transition-colors">
-                  info@sancheticomputers.com
+                <a href="mailto:sancheticomputers888@gmail.com" className="text-blue-200 text-sm hover:text-white transition-colors">
+                  sancheticomputers888@gmail.com
                 </a>
               </li>
             </ul>
@@ -109,7 +109,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Sancheti Computers. All Rights Reserved.
           </p>
           <p className="text-blue-200 text-sm">
-            Owner: Mahendra Kumar | Est. 2017
+            Owner: Mahendra Kumar | Est. 2012
           </p>
         </div>
       </div>

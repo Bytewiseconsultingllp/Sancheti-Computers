@@ -17,7 +17,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `New Contact Form Submission:\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nProduct: ${formData.product}\nMessage: ${formData.message}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/918050773494?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -68,8 +68,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-primary mb-1">Phone</h3>
-                      <a href="tel:+919876543210" className="text-gray-500 text-sm hover:text-secondary transition-colors">
-                        +91 98765 43210
+                      <a href="tel:+918050773494" className="text-gray-500 text-sm hover:text-secondary transition-colors">
+                        +91 80507 73494
                       </a>
                     </div>
                   </div>
@@ -80,8 +80,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-primary mb-1">Email</h3>
-                      <a href="mailto:info@sancheticomputers.com" className="text-gray-500 text-sm hover:text-secondary transition-colors">
-                        info@sancheticomputers.com
+                      <a href="mailto:sancheticomputers888@gmail.com" className="text-gray-500 text-sm hover:text-secondary transition-colors">
+                        sancheticomputers888@gmail.com
                       </a>
                     </div>
                   </div>

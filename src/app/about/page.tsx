@@ -9,7 +9,7 @@ const whyChooseUs = [
   { icon: IndianRupee, title: "Competitive Pricing", description: "Best market prices without compromising on quality." },
   { icon: Users, title: "Experienced Team", description: "Knowledgeable staff with years of industry expertise." },
   { icon: Zap, title: "Quick Service", description: "Fast turnaround on repairs, upgrades, and deliveries." },
-  { icon: ThumbsUp, title: "Trusted by Businesses", description: "Serving both individual and enterprise clients since 2017." },
+  { icon: ThumbsUp, title: "Trusted by Businesses", description: "Serving both individual and enterprise clients since 2012." },
   { icon: Award, title: "Customer Satisfaction", description: "We prioritize building long-term relationships." },
 ];
 
@@ -22,7 +22,7 @@ export default function AboutPage() {
           <FadeIn>
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">About Us</h1>
             <p className="text-blue-100/80 text-lg max-w-2xl mx-auto">
-              Your trusted IT solutions provider since 2017
+              Your trusted IT solutions provider since 2012
             </p>
           </FadeIn>
         </div>
@@ -36,7 +36,7 @@ export default function AboutPage() {
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6">Our Story</h2>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  Sancheti Computers has been serving customers across Bengaluru and Karnataka since 2017, providing reliable IT hardware, software, networking products, and technical support solutions.
+                  Sancheti Computers has been serving customers across Bengaluru and Karnataka since 2012, providing reliable IT hardware, software, networking products, and technical support solutions.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Founded by Mahendra Kumar, we started with a vision to provide genuine IT products at competitive prices with exceptional customer service. Over the years, we have grown to become one of the most trusted computer shops on SP Road, Bengaluru.

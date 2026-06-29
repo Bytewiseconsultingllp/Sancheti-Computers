@@ -5,10 +5,11 @@ const baseUrl = "https://sancheticomputers.com";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Sancheti Computers at 112, Sadar Patrappa Road, Bengaluru. Call +91 80507 73494 or fill our contact form for IT hardware inquiries.",
+    "Contact Sancheti Computers for IT products, laptop repair, networking solutions, and enterprise procurement. Located on SP Road, Bengaluru. Call +91 80507 73494.",
+  keywords: ["contact sancheti computers", "computer shop SP road contact", "IT store bengaluru phone number"],
   openGraph: {
     title: "Contact Us | Sancheti Computers",
-    description: "Reach us at SP Road, Bengaluru. Call, WhatsApp, or fill the form for IT product and service enquiries.",
+    description: "Get in touch with Sancheti Computers — SP Road, Bengaluru. Call +91 80507 73494.",
     url: `${baseUrl}/contact`,
   },
   alternates: {

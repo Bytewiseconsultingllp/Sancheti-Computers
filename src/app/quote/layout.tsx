@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 const baseUrl = "https://sancheticomputers.com";
 
 export const metadata: Metadata = {
-  title: "Request a Quote",
+  title: "Get a Quote",
   description:
-    "Get the best competitive prices for laptops, desktops, networking equipment, and IT hardware. Request a free quote from Sancheti Computers, Bengaluru.",
+    "Request a free quote for bulk IT hardware, laptops, desktops, networking equipment, or enterprise procurement. Sancheti Computers — B2B & GEM specialist in Bengaluru.",
+  keywords: ["IT hardware quote bengaluru", "bulk computer price bangalore", "GEM IT procurement", "B2B IT hardware karnataka"],
   openGraph: {
-    title: "Request a Quote | Sancheti Computers",
-    description: "Get competitive quotes for IT hardware, laptops, desktops, networking and more. B2C, B2B & GEM enquiries welcome.",
+    title: "Get a Quote | Sancheti Computers",
+    description: "Request a free quote for bulk IT procurement. B2B & GEM specialist.",
     url: `${baseUrl}/quote`,
   },
   alternates: {

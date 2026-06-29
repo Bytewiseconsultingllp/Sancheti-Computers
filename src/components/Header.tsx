@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -56,7 +57,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <img src="/logo.svg" alt="Sancheti Computers" className="w-10 h-10 lg:w-11 lg:h-11 rounded-lg shadow-md group-hover:shadow-lg transition-shadow" />
+              <Image src="/logo.svg" alt="Sancheti Computers" width={44} height={44} className="w-10 h-10 lg:w-11 lg:h-11 rounded-lg shadow-md group-hover:shadow-lg transition-shadow" unoptimized />
               <div className="hidden sm:block">
                 <h1 className="text-base lg:text-lg font-bold text-primary leading-tight tracking-tight">
                   Sancheti Computers

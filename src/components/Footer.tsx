@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { businessInfo } from "@/lib/data";
 
@@ -29,7 +30,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <img src="/logo.svg" alt="Sancheti Computers" className="w-11 h-11 rounded-lg" />
+              <Image src="/logo.svg" alt="Sancheti Computers" width={44} height={44} className="w-11 h-11 rounded-lg" unoptimized />
               <div>
                 <h3 className="text-lg font-bold tracking-tight">Sancheti Computers</h3>
                 <p className="text-blue-200 text-xs">Trusted IT Solutions Since 2012</p>

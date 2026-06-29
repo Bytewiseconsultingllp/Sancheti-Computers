@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, MessageSquare, Package, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -24,7 +25,7 @@ function SidebarLinks({ onNavigate }: { onNavigate?: () => void }) {
     <>
       <div className="p-5 border-b border-gray-100">
         <Link href="/admin" className="flex items-center gap-3" onClick={onNavigate}>
-          <img src="/logo.svg" alt="SC" className="w-10 h-10 rounded-lg" />
+          <Image src="/logo.svg" alt="SC" width={40} height={40} className="w-10 h-10 rounded-lg" unoptimized />
           <div>
             <h2 className="text-sm font-bold text-primary">Admin Panel</h2>
             <p className="text-xs text-muted">Sancheti Computers</p>
@@ -74,7 +75,7 @@ export default function AdminSidebar() {
       {/* Mobile header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 px-4 h-14 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src="/logo.svg" alt="SC" className="w-8 h-8 rounded-lg" />
+          <Image src="/logo.svg" alt="SC" width={32} height={32} className="w-8 h-8 rounded-lg" unoptimized />
           <span className="font-bold text-sm text-primary">Admin</span>
         </div>
         <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-muted">

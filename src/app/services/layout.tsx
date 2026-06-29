@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 const baseUrl = "https://sancheticomputers.com";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Services",
   description:
-    "Computer sales, laptop sales, networking solutions, CCTV, IT infrastructure, system upgrades, repairs & more. Comprehensive IT services at Sancheti Computers, Bengaluru.",
+    "Professional IT services from Sancheti Computers — computer sales, laptop repairs, networking solutions, CCTV installation, IT infrastructure and enterprise procurement in Bengaluru.",
+  keywords: ["computer repair bengaluru", "networking solutions bangalore", "CCTV installation bengaluru", "IT infrastructure bangalore", "IT AMC bengaluru"],
   openGraph: {
-    title: "Our Services | Sancheti Computers",
-    description: "Comprehensive IT solutions including computer sales, networking, CCTV, IT infrastructure setup and more.",
+    title: "Services | Sancheti Computers",
+    description: "Professional IT services — computer sales, repairs, networking, CCTV, IT infrastructure in Bengaluru.",
     url: `${baseUrl}/services`,
   },
   alternates: {

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import FAQSchema from "@/components/FAQSchema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,6 +77,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@sancheticomputers",
+    creator: "@sancheticomputers",
     title: "Sancheti Computers | IT Hardware & Networking Solutions",
     description: "Trusted IT solutions provider in Bengaluru since 2012. Computers, laptops, networking & more.",
     images: [`${siteUrl}/og-image.png`],
@@ -107,7 +110,15 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
         <link rel="icon" href="/logo.svg" type="image/svg+xml" sizes="any" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.placename" content="Bengaluru" />
+        <meta name="geo.position" content="12.9716;77.5726" />
+        <meta name="ICBM" content="12.9716, 77.5726" />
+        <meta name="theme-color" content="#0f172a" />
+        <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION" />
+        <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION" />
         <SchemaMarkup />
+        <FAQSchema />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","${CLARITY_ID}");`,

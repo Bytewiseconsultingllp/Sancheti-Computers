@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Lock, User, Loader2 } from "lucide-react";
 
 export default function AdminLoginPage() {
@@ -42,7 +43,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-surface flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <img src="/logo.svg" alt="Sancheti Computers" className="w-16 h-16 rounded-2xl shadow-lg mx-auto mb-4" />
+          <Image src="/logo.svg" alt="Sancheti Computers" width={64} height={64} className="w-16 h-16 rounded-2xl shadow-lg mx-auto mb-4" unoptimized />
           <h1 className="text-2xl font-bold text-primary">Admin Dashboard</h1>
           <p className="text-muted text-sm mt-1">Sancheti Computers</p>
         </div>

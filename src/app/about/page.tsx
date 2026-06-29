@@ -1,8 +1,9 @@
 "use client";
 
-import { Award, Target, Eye, Shield, IndianRupee, Users, Zap, ThumbsUp } from "lucide-react";
+import { Award, Target, Eye, Shield, IndianRupee, Users, Zap, ThumbsUp, MessageCircle } from "lucide-react";
 import { FadeIn, FadeInLeft, FadeInRight, StaggerChildren, StaggerItem } from "@/components/Animations";
 import Link from "next/link";
+import { businessInfo } from "@/lib/data";
 
 const whyChooseUs = [
   { icon: Shield, title: "Genuine Products", description: "100% authentic products from authorized distributors." },
@@ -29,42 +30,42 @@ export default function AboutPage() {
       </section>
 
       {/* Company Overview */}
-      <section className="py-24 bg-white">
+      <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <FadeInLeft>
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6">Our Story</h2>
-                <p className="text-gray-600 leading-relaxed mb-6">
+                <p className="text-muted leading-relaxed mb-5">
                   Sancheti Computers has been serving customers across Bengaluru and Karnataka since 2012, providing reliable IT hardware, software, networking products, and technical support solutions.
                 </p>
-                <p className="text-gray-600 leading-relaxed mb-6">
+                <p className="text-muted leading-relaxed mb-5">
                   Founded by Mahendra Kumar, we started with a vision to provide genuine IT products at competitive prices with exceptional customer service. Over the years, we have grown to become one of the most trusted computer shops on SP Road, Bengaluru.
                 </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Our commitment to quality, transparency, and customer satisfaction has helped us build a loyal customer base of over 1000 happy customers, including businesses, educational institutions, and individual buyers.
+                <p className="text-muted leading-relaxed">
+                  Our commitment to quality, transparency, and customer satisfaction has helped us build a loyal customer base of over 1000 happy customers, including businesses, educational institutions, government departments, and individual buyers.
                 </p>
               </div>
             </FadeInLeft>
 
             <FadeInRight delay={0.2}>
-              <div className="bg-surface rounded-3xl p-8 border border-gray-100">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                    <div className="text-4xl font-bold gradient-text mb-2">8+</div>
-                    <p className="text-gray-500 text-sm">Years in Business</p>
+              <div className="bg-surface rounded-2xl p-8 border border-gray-100">
+                <div className="grid grid-cols-2 gap-5">
+                  <div className="bg-white rounded-xl p-5 text-center shadow-sm border border-gray-50">
+                    <div className="text-3xl font-bold gradient-text mb-1">8+</div>
+                    <p className="text-muted text-sm">Years in Business</p>
                   </div>
-                  <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                    <div className="text-4xl font-bold gradient-text mb-2">1000+</div>
-                    <p className="text-gray-500 text-sm">Happy Customers</p>
+                  <div className="bg-white rounded-xl p-5 text-center shadow-sm border border-gray-50">
+                    <div className="text-3xl font-bold gradient-text mb-1">1000+</div>
+                    <p className="text-muted text-sm">Happy Customers</p>
                   </div>
-                  <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                    <div className="text-4xl font-bold gradient-text mb-2">50+</div>
-                    <p className="text-gray-500 text-sm">Brands Available</p>
+                  <div className="bg-white rounded-xl p-5 text-center shadow-sm border border-gray-50">
+                    <div className="text-3xl font-bold gradient-text mb-1">50+</div>
+                    <p className="text-muted text-sm">Brands Available</p>
                   </div>
-                  <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                    <div className="text-4xl font-bold gradient-text mb-2">100%</div>
-                    <p className="text-gray-500 text-sm">Genuine Products</p>
+                  <div className="bg-white rounded-xl p-5 text-center shadow-sm border border-gray-50">
+                    <div className="text-3xl font-bold gradient-text mb-1">100%</div>
+                    <p className="text-muted text-sm">Genuine Products</p>
                   </div>
                 </div>
               </div>
@@ -74,28 +75,28 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-24 bg-surface">
+      <section className="section-padding bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             <FadeInLeft>
-              <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm h-full">
-                <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Target size={28} className="text-secondary" />
+              <div className="bg-white rounded-2xl p-8 lg:p-10 border border-gray-100 shadow-sm h-full">
+                <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-5">
+                  <Target size={24} className="text-secondary" />
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-4">Our Mission</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-xl font-bold text-primary mb-3">Our Mission</h3>
+                <p className="text-muted leading-relaxed">
                   To deliver genuine products, expert guidance, and exceptional customer service to every client. We strive to make quality IT solutions accessible and affordable for all.
                 </p>
               </div>
             </FadeInLeft>
 
             <FadeInRight delay={0.1}>
-              <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm h-full">
-                <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Eye size={28} className="text-accent" />
+              <div className="bg-white rounded-2xl p-8 lg:p-10 border border-gray-100 shadow-sm h-full">
+                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-5">
+                  <Eye size={24} className="text-accent" />
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-4">Our Vision</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-xl font-bold text-primary mb-3">Our Vision</h3>
+                <p className="text-muted leading-relaxed">
                   To become Karnataka&apos;s most trusted IT solutions provider, known for our commitment to quality, innovation, and customer-first approach in the IT hardware industry.
                 </p>
               </div>
@@ -105,26 +106,26 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-white">
+      <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <div className="text-center mb-16">
+            <div className="text-center mb-14">
               <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">Why Choose Us</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-muted max-w-2xl mx-auto">
                 What makes Sancheti Computers the preferred choice for IT solutions
               </p>
             </div>
           </FadeIn>
 
-          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChooseUs.map((item) => (
               <StaggerItem key={item.title}>
-                <div className="bg-surface rounded-2xl p-8 border border-gray-100 card-hover h-full">
-                  <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-5">
-                    <item.icon size={24} className="text-secondary" />
+                <div className="bg-surface rounded-xl p-7 border border-gray-100 card-hover-subtle h-full">
+                  <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                    <item.icon size={20} className="text-secondary" />
                   </div>
-                  <h3 className="text-lg font-bold text-primary mb-3">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="text-base font-bold text-primary mb-2">{item.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{item.description}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -133,24 +134,24 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 hero-gradient">
+      <section className="py-16 hero-gradient">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <FadeIn>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Partner With Us Today</h2>
-            <p className="text-blue-100/80 text-lg mb-8 max-w-2xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-5">Partner With Us Today</h2>
+            <p className="text-blue-100/70 text-lg mb-8 max-w-2xl mx-auto">
               Experience the Sancheti Computers difference — quality products, expert advice, and unbeatable service.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-blue-50 transition-all shadow-lg"
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={`https://wa.me/${businessInfo.whatsapp}?text=${encodeURIComponent("Hi, I'd like to discuss a business partnership with Sancheti Computers.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp !py-4 !px-8"
               >
-                Contact Us
-              </Link>
-              <Link
-                href="/quote"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
-              >
+                <MessageCircle size={18} />
+                Chat on WhatsApp
+              </a>
+              <Link href="/quote" className="btn-ghost !text-white border border-white/15 hover:bg-white/10 !py-4 !px-8">
                 Get a Quote
               </Link>
             </div>

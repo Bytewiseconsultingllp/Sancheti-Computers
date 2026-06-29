@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageCircle } from "lucide-react";
 import { FadeIn, FadeInLeft, FadeInRight } from "@/components/Animations";
+import { businessInfo } from "@/lib/data";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,11 +15,29 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `New Contact Form Submission:\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nProduct: ${formData.product}\nMessage: ${formData.message}`;
-    const whatsappUrl = `https://wa.me/918050773494?text=${encodeURIComponent(text)}`;
-    window.open(whatsappUrl, "_blank");
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          product: formData.product,
+          message: formData.message,
+          source: "contact",
+        }),
+      });
+      const data = await res.json();
+      if (data.whatsappUrl) {
+        window.open(data.whatsappUrl, "_blank");
+      }
+    } catch {
+      const text = `New Contact Form Submission:\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nProduct: ${formData.product}\nMessage: ${formData.message}`;
+      window.open(`https://wa.me/${businessInfo.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
+    }
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: "", phone: "", email: "", product: "", message: "" });
@@ -39,71 +58,82 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-white">
+      <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12">
             {/* Contact Info */}
             <FadeInLeft>
               <div>
                 <h2 className="text-3xl font-bold text-primary mb-8">Get In Touch</h2>
 
-                <div className="space-y-6 mb-10">
+                <div className="space-y-5 mb-8">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center shrink-0">
-                      <MapPin size={22} className="text-secondary" />
+                    <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
+                      <MapPin size={20} className="text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1">Address</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">
-                        112, Sadar Patrappa Road,<br />
-                        Dodpete, Nagarathpete,<br />
-                        Bengaluru, Karnataka – 560002
+                      <h3 className="font-semibold text-primary mb-1 text-sm">Address</h3>
+                      <p className="text-muted text-sm leading-relaxed">
+                        {businessInfo.address.street},<br />
+                        {businessInfo.address.area},<br />
+                        {businessInfo.address.city}, {businessInfo.address.state} - {businessInfo.address.pincode}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center shrink-0">
-                      <Phone size={22} className="text-secondary" />
+                    <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
+                      <Phone size={20} className="text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1">Phone</h3>
-                      <a href="tel:+918050773494" className="text-gray-500 text-sm hover:text-secondary transition-colors">
-                        +91 80507 73494
+                      <h3 className="font-semibold text-primary mb-1 text-sm">Phone</h3>
+                      <a href={`tel:${businessInfo.phone}`} className="text-muted text-sm hover:text-secondary transition-colors">
+                        {businessInfo.phoneFormatted}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center shrink-0">
-                      <Mail size={22} className="text-secondary" />
+                    <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
+                      <Mail size={20} className="text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1">Email</h3>
-                      <a href="mailto:sancheticomputers888@gmail.com" className="text-gray-500 text-sm hover:text-secondary transition-colors">
-                        sancheticomputers888@gmail.com
+                      <h3 className="font-semibold text-primary mb-1 text-sm">Email</h3>
+                      <a href={`mailto:${businessInfo.email}`} className="text-muted text-sm hover:text-secondary transition-colors break-all">
+                        {businessInfo.email}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center shrink-0">
-                      <Clock size={22} className="text-secondary" />
+                    <div className="w-11 h-11 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
+                      <Clock size={20} className="text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1">Business Hours</h3>
-                      <p className="text-gray-500 text-sm">Monday – Saturday: 10:00 AM – 8:00 PM</p>
-                      <p className="text-gray-500 text-sm">Sunday: Closed</p>
+                      <h3 className="font-semibold text-primary mb-1 text-sm">Business Hours</h3>
+                      <p className="text-muted text-sm">{businessInfo.hours.days}: {businessInfo.hours.time}</p>
+                      <p className="text-muted text-sm">Sunday: Closed</p>
                     </div>
                   </div>
                 </div>
 
+                {/* WhatsApp CTA */}
+                <a
+                  href={`https://wa.me/${businessInfo.whatsapp}?text=${encodeURIComponent("Hi, I need information about your products/services.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp mb-6"
+                >
+                  <MessageCircle size={18} />
+                  Chat on WhatsApp
+                </a>
+
                 {/* Google Maps */}
-                <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm mt-6">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.985943404576!2d77.5726!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14f3b3b3b3b3%3A0x1234567890abcdef!2sSP%20Road%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1234567890"
                     width="100%"
-                    height="300"
+                    height="280"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
@@ -116,24 +146,24 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <FadeInRight delay={0.2}>
-              <div className="bg-surface rounded-3xl p-8 lg:p-10 border border-gray-100">
-                <h2 className="text-2xl font-bold text-primary mb-6">Send Us a Message</h2>
+              <div className="bg-surface rounded-2xl p-7 lg:p-9 border border-gray-100">
+                <h2 className="text-xl font-bold text-primary mb-6">Send Us a Message</h2>
 
                 {submitted ? (
                   <div className="text-center py-12">
-                    <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
+                    <CheckCircle size={48} className="text-success mx-auto mb-4" />
                     <h3 className="text-xl font-semibold text-primary mb-2">Message Sent!</h3>
-                    <p className="text-gray-500">We&apos;ll get back to you soon.</p>
+                    <p className="text-muted text-sm">We&apos;ll get back to you soon.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <input
                       type="text"
                       placeholder="Your Name *"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-white rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
+                      className="input-field"
                     />
                     <input
                       type="tel"
@@ -141,19 +171,19 @@ export default function ContactPage() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-white rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
+                      className="input-field"
                     />
                     <input
                       type="email"
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-white rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
+                      className="input-field"
                     />
                     <select
                       value={formData.product}
                       onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-white rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary text-gray-600"
+                      className="input-field text-muted"
                     >
                       <option value="">Select Product Category</option>
                       <option value="Laptops">Laptops</option>
@@ -171,12 +201,9 @@ export default function ContactPage() {
                       required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-white rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary resize-none"
+                      className="input-field resize-none"
                     />
-                    <button
-                      type="submit"
-                      className="w-full py-4 bg-secondary text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-secondary/25 flex items-center justify-center gap-2"
-                    >
+                    <button type="submit" className="btn-primary w-full !py-3.5">
                       <Send size={18} />
                       Send Message
                     </button>

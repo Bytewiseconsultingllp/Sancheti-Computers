@@ -1,21 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Search, X, Send, Package } from "lucide-react";
+import { Search, X, Package, MessageCircle } from "lucide-react";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
-import { products, productCategories } from "@/lib/data";
+import { products, productCategories, businessInfo } from "@/lib/data";
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [inquiryProduct, setInquiryProduct] = useState("");
-  const [showInquiryForm, setShowInquiryForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
@@ -23,18 +15,29 @@ export default function ProductsPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const handleInquiry = (productName: string) => {
-    setInquiryProduct(productName);
-    setShowInquiryForm(true);
-  };
-
-  const handleSubmitInquiry = (e: React.FormEvent) => {
-    e.preventDefault();
-    const message = `Hi, I'm interested in ${inquiryProduct}. ${formData.message}`;
-    const whatsappUrl = `https://wa.me/918050773494?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-    setShowInquiryForm(false);
-    setFormData({ name: "", phone: "", email: "", message: "" });
+  const handleProductEnquiry = async (productName: string) => {
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Website Visitor",
+          phone: "Pending",
+          product: productName,
+          message: `Interested in ${productName}`,
+          source: "product",
+        }),
+      });
+      const data = await res.json();
+      if (data.whatsappUrl) {
+        window.open(data.whatsappUrl, "_blank");
+      }
+    } catch {
+      window.open(
+        `https://wa.me/${businessInfo.whatsapp}?text=${encodeURIComponent(`Hi, I'm interested in ${productName}. Please share the details and best price.`)}`,
+        "_blank"
+      );
+    }
   };
 
   return (
@@ -52,36 +55,39 @@ export default function ProductsPage() {
       </section>
 
       {/* Filters & Search */}
-      <section className="py-8 bg-white border-b border-gray-100 sticky top-16 lg:top-20 z-30">
+      <section className="py-6 bg-white border-b border-gray-100 sticky top-[108px] lg:top-[116px] z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             {/* Search */}
             <div className="relative flex-1 w-full">
-              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" />
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-surface rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
+                className="input-field !pl-10 !pr-10"
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors"
+                >
                   <X size={16} />
                 </button>
               )}
             </div>
 
             {/* Category Filter */}
-            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
               {productCategories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                  className={`px-3.5 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
                     selectedCategory === cat
-                      ? "bg-secondary text-white shadow-lg shadow-secondary/25"
-                      : "bg-surface text-gray-600 hover:bg-gray-200 border border-gray-200"
+                      ? "bg-secondary text-white shadow-sm"
+                      : "bg-surface text-muted hover:bg-surface-alt border border-border"
                   }`}
                 >
                   {cat}
@@ -93,40 +99,60 @@ export default function ProductsPage() {
       </section>
 
       {/* Products Grid */}
-      <section className="py-16 bg-surface">
+      <section className="section-padding bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredProducts.length === 0 ? (
             <FadeIn>
               <div className="text-center py-20">
                 <Package size={48} className="text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-500 mb-2">No products found</h3>
-                <p className="text-gray-400">Try adjusting your search or filter criteria</p>
+                <h3 className="text-xl font-semibold text-muted mb-2">No products found</h3>
+                <p className="text-muted/70">Try adjusting your search or filter criteria</p>
               </div>
             </FadeIn>
           ) : (
-            <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {filteredProducts.map((product) => (
                 <StaggerItem key={product.id}>
-                  <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover group">
+                  <div className="bg-white rounded-xl overflow-hidden border border-gray-100 card-hover group h-full flex flex-col">
                     {/* Product Image Placeholder */}
-                    <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center relative overflow-hidden">
-                      <Package size={48} className="text-secondary/30" />
-                      <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-all duration-300" />
+                    <div className="aspect-[16/10] bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center relative overflow-hidden">
+                      <Package size={40} className="text-secondary/20" />
+                      {product.badge && (
+                        <span className="absolute top-3 left-3 badge-primary text-[10px]">{product.badge}</span>
+                      )}
                     </div>
-                    <div className="p-6">
-                      <span className="inline-block px-3 py-1 bg-blue-50 text-secondary text-xs font-medium rounded-full mb-3">
+
+                    <div className="p-5 flex flex-col flex-1">
+                      <span className="inline-block px-2.5 py-0.5 bg-surface text-muted text-[11px] font-medium rounded mb-2.5 self-start">
                         {product.category}
                       </span>
-                      <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-secondary transition-colors">
+                      <h3 className="text-base font-bold text-primary mb-1 group-hover:text-secondary transition-colors">
                         {product.name}
                       </h3>
-                      <p className="text-secondary font-semibold text-sm mb-4">{product.price}</p>
-                      <button
-                        onClick={() => handleInquiry(product.name)}
-                        className="w-full py-2.5 bg-secondary/10 text-secondary font-medium rounded-lg hover:bg-secondary hover:text-white transition-all text-sm"
-                      >
-                        Inquire Now
-                      </button>
+                      <p className="text-muted text-sm mb-2 line-clamp-2">{product.description}</p>
+
+                      {/* Specs */}
+                      {product.specs && (
+                        <ul className="space-y-1 mb-4 flex-1">
+                          {product.specs.map((spec) => (
+                            <li key={spec} className="flex items-center gap-1.5 text-xs text-muted/80">
+                              <span className="w-1 h-1 bg-secondary/40 rounded-full shrink-0" />
+                              {spec}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      <div className="mt-auto">
+                        <p className="text-secondary font-bold text-sm mb-3">{product.price}</p>
+                        <button
+                          onClick={() => handleProductEnquiry(product.name)}
+                          className="w-full py-2.5 bg-whatsapp/10 text-whatsapp-dark font-semibold rounded-lg hover:bg-whatsapp hover:text-white transition-all text-sm flex items-center justify-center gap-2"
+                        >
+                          <MessageCircle size={15} />
+                          Enquire Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </StaggerItem>
@@ -136,61 +162,35 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Inquiry Form Modal */}
-      {showInquiryForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-primary">Product Inquiry</h3>
-              <button onClick={() => setShowInquiryForm(false)} className="text-gray-400 hover:text-gray-600">
-                <X size={20} />
-              </button>
-            </div>
-            <p className="text-gray-500 text-sm mb-6">
-              Product: <span className="font-semibold text-primary">{inquiryProduct}</span>
+      {/* CTA */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <FadeIn>
+            <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">
+              Can&apos;t Find What You&apos;re Looking For?
+            </h2>
+            <p className="text-muted text-lg mb-8 max-w-2xl mx-auto">
+              We stock products from 50+ brands. Tell us what you need and we&apos;ll get it for you at the best price.
             </p>
-            <form onSubmit={handleSubmitInquiry} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 bg-surface rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
-              />
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                required
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 bg-surface rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
-              />
-              <input
-                type="email"
-                placeholder="Email (optional)"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 bg-surface rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
-              />
-              <textarea
-                placeholder="Your message or requirements..."
-                rows={3}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 bg-surface rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary resize-none"
-              />
-              <button
-                type="submit"
-                className="w-full py-3 bg-secondary text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-secondary/25 flex items-center justify-center gap-2"
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={`https://wa.me/${businessInfo.whatsapp}?text=${encodeURIComponent(
+                  "Hi, I'm looking for a specific IT product. Can you help?"
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp"
               >
-                <Send size={16} />
-                Send via WhatsApp
-              </button>
-            </form>
-          </div>
+                <MessageCircle size={18} />
+                Chat on WhatsApp
+              </a>
+              <a href="tel:+918050773494" className="btn-outline">
+                Call: +91 80507 73494
+              </a>
+            </div>
+          </FadeIn>
         </div>
-      )}
+      </section>
     </>
   );
 }
